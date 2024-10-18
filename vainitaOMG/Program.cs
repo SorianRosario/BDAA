@@ -1,6 +1,63 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Mi API con JWT", Version = "v1" });
+
+    // Configuración para agregar el token JWT en Swagger
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "Introduzca 'Bearer' [espacio] seguido de su token JWT."
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
+
+builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {            
+            ValidateIssuer = true, 
+            ValidateAudience = true,
+            ValidateLifetime = true, 
+            ValidateIssuerSigningKey = true, 
+            ValidIssuer = "yourdomain.com", 
+            ValidAudience = "yourdomain.com",
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("vainitaOMGclavelargaysegura_a234243423423awda"))
+        };
+    });
+
+builder.Services.AddAuthorization();
+
 var app = builder.Build();
 app.UseMiddleware<Klkmdw>();
 if (app.Environment.IsDevelopment())
@@ -10,9 +67,46 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
+app.UseAuthorization();  
+
+ 
+// Función para generar el JWT
+string GenerateJwtToken()
+{
+    var claims = new[]
+    {
+        new Claim(JwtRegisteredClaimNames.Sub, "test"),
+        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        new Claim("User","Mi usuario")
+    };
+
+    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("vainitaOMGclavelargaysegura_a234243423423awda"));
+    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+    var token = new JwtSecurityToken(
+        issuer: "yourdomain.com",
+        audience: "yourdomain.com",
+        claims: claims,
+        expires: DateTime.Now.AddMinutes(30),
+        signingCredentials: creds);
+
+    return new JwtSecurityTokenHandler().WriteToken(token);
+}
 
 
-app.MapGet("/companies", () => Results.Ok(DataStore.Companies));
+// Endpoint de login para generar el JWT
+app.MapPost("/login", (UserLogin login) =>
+{
+    if (login.Username == "test" && login.Password == "pass") // Validar credenciales
+    {
+        var token = GenerateJwtToken();
+        return Results.Ok(new { token });
+    }
+    return Results.Unauthorized();
+});
+
+app.MapGet("/companies", () => Results.Ok(DataStore.Companies)).RequireAuthorization(); 
 
 app.MapGet("/companies/{id}", (int id) =>
 {
@@ -142,4 +236,10 @@ public class Employee
     public int Id { get; set; }
     public required string  Name { get; set; }
     public int CompanyId { get; set; }
+}
+
+public class UserLogin
+{
+    public required string Username { get; set; }
+    public required string Password { get; set; }
 }
