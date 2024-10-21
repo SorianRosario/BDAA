@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nllS6AKHvjo=",
+  "dgSpecHash": "PsFpZmMLe3w=",
   "success": true,
-  "projectFilePath": "c:\\Users\\MOISES RR\\Desktop\\MoisesRosario\\basededatosaa\\vainitaOMG\\vainitaOMG.csproj",
+  "projectFilePath": "C:\\Users\\MOISES RR\\Desktop\\MoisesRosario\\basededatosaa\\vainitaOMG\\vainitaOMG.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MOISES RR\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.10\\microsoft.aspnetcore.authentication.jwtbearer.8.0.10.nupkg.sha512",
     "C:\\Users\\MOISES RR\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.10\\microsoft.aspnetcore.openapi.8.0.10.nupkg.sha512",

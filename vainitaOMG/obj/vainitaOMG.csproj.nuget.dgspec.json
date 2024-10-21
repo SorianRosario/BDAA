@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\MOISES RR\\Desktop\\MoisesRosario\\basededatosaa\\vainitaOMG\\vainitaOMG.csproj": {}
+    "C:\\Users\\MOISES RR\\Desktop\\MoisesRosario\\basededatosaa\\vainitaOMG\\vainitaOMG.csproj": {}
   },
   "projects": {
-    "c:\\Users\\MOISES RR\\Desktop\\MoisesRosario\\basededatosaa\\vainitaOMG\\vainitaOMG.csproj": {
+    "C:\\Users\\MOISES RR\\Desktop\\MoisesRosario\\basededatosaa\\vainitaOMG\\vainitaOMG.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\MOISES RR\\Desktop\\MoisesRosario\\basededatosaa\\vainitaOMG\\vainitaOMG.csproj",
+        "projectUniqueName": "C:\\Users\\MOISES RR\\Desktop\\MoisesRosario\\basededatosaa\\vainitaOMG\\vainitaOMG.csproj",
         "projectName": "vainitaOMG",
-        "projectPath": "c:\\Users\\MOISES RR\\Desktop\\MoisesRosario\\basededatosaa\\vainitaOMG\\vainitaOMG.csproj",
+        "projectPath": "C:\\Users\\MOISES RR\\Desktop\\MoisesRosario\\basededatosaa\\vainitaOMG\\vainitaOMG.csproj",
         "packagesPath": "C:\\Users\\MOISES RR\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\MOISES RR\\Desktop\\MoisesRosario\\basededatosaa\\vainitaOMG\\obj\\",
+        "outputPath": "C:\\Users\\MOISES RR\\Desktop\\MoisesRosario\\basededatosaa\\vainitaOMG\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\MOISES RR\\AppData\\Roaming\\NuGet\\NuGet.Config"

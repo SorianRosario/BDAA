@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("vainitaOMG")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ceb27cc26b814b43d4639f35fe8626b75776de55")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c7831ce45c765680155cee8ef96cf2296b9c9ee9")]
 [assembly: System.Reflection.AssemblyProductAttribute("vainitaOMG")]
 [assembly: System.Reflection.AssemblyTitleAttribute("vainitaOMG")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
